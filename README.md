@@ -18,14 +18,27 @@ Or, they can run `brew tap xavdid/projects` and then `brew install some-project-
 
 Running these steps will generate a fresh, installable formula file. I based the instructions off [this blog post](https://til.simonwillison.net/homebrew/packaging-python-cli-for-homebrew).
 
+First, set your project name:
+
+```bash
+export PACKAGE_NAME="my-package-here"
+```
+
+Then, paste the following:
+
+> note: this is tailored for my setup specifically, but you should be able to adapt it to yours
+
 ```bash
 cd /tmp
 mkdir create-formula
 cd create-formula
 venv
-pip install YOUR_PACKAGE_NAME homebrew-pypi-poet
-poet -f YOUR_PACKAGE_NAME > YOUR_PACKAGE_NAME.rb
-cp YOUR_PACKAGE_NAME.rb ~/projects/homebrew-projects/Formula
+pip install $PACKAGE_NAME homebrew-pypi-poet
+poet -f $PACKAGE_NAME > "$PACKAGE_NAME.rb"
+cp "$PACKAGE_NAME.rb" ~/projects/homebrew-projects/Formula
+deactivate
+cd ..
+rm -rf create-formula
 ```
 
 See also: [Python for formula authors](https://docs.brew.sh/Python-for-Formula-Authors)
