@@ -42,3 +42,7 @@ rm -rf create-formula
 ```
 
 See also: [Python for formula authors](https://docs.brew.sh/Python-for-Formula-Authors)
+
+## TODO
+
+- could automate [updating these on release](https://til.simonwillison.net/homebrew/auto-formulas-github-actions)
