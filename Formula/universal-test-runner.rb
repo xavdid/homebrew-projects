@@ -24,6 +24,6 @@ class UniversalTestRunner < Formula
   end
 
   test do
-    false
+    assert_match "no matching test handler", shell_output("#{bin}/universal-test-runner debug")
   end
 end
