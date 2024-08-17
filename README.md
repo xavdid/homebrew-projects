@@ -20,6 +20,13 @@ There's a justfile recipe. I based the instructions off [this blog post](https:/
 
 See also: [Python for formula authors](https://docs.brew.sh/Python-for-Formula-Authors)
 
+## Bumping a Formula
+
+1. `just bump <PACKAGE>`
+2. paste the output into the formula file
+3. `just verify <PACKAGE>` to test (installs then uninstalls the local formula)
+4. commit + push!
+
 ## TODO
 
 - could automate [updating these on release](https://til.simonwillison.net/homebrew/auto-formulas-github-actions)

@@ -4,11 +4,19 @@ _default:
 # will have to make this more flexible if/when I have non-python packages in here
 # outputs the information that changes in a formula when a new version is released (to be pasted into the formula manually)
 
-# bump an existing package version
-@bump package:
-    {{ if path_exists("Formula" / package + ".rb") == "false" { error("no formula for package " + package) } else { "" } }}
+@_exists package:
+    {{ assert(path_exists("Formula" / package + ".rb") == "true", "no local formula for package " + package) }}
 
+# bump an existing package version
+@bump package: (_exists package)
     curl -s "https://pypi.org/pypi/{{ package }}/json" | jq '.releases["\(.releases | keys | .[-1])"] | map(select(.packagetype == "sdist"))[0] | {url, sha256: .digests.sha256}'
+
+    echo "Paste those values into ./Formula/{{ package }}.rb"
+
+# install, then uninstall, a formula. will fail if it's malformed
+@verify package: (_exists package)
+    brew install --quiet --formula ./Formula/{{ package }}.rb
+    brew uninstall --quiet --formula ./Formula/{{ package }}.rb
 
 # generate a new python package formula
 generate package:
