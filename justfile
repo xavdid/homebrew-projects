@@ -13,7 +13,7 @@ _default:
 
     echo "Paste those values into ./Formula/{{ package }}.rb"
 
-# install, then uninstall, a formula. will fail if it's malformed
+# install, then uninstall, a formula. will fail if it's malformed. Useful for running after `bump`
 @verify package: (_exists package)
     brew install --quiet --formula ./Formula/{{ package }}.rb
     brew uninstall --quiet --formula ./Formula/{{ package }}.rb
@@ -40,3 +40,7 @@ generate package:
     rm -rf create-formula
 
     echo "Ok now tweak the new formula!"
+
+@commit package: (_exists package)
+    git add ./Formula/{{ package }}.rb
+    git commit -m "{{ package }} -> $(curl --fail -s "https://pypi.org/pypi/universal-test-runner/json" | jq -r '.info.version')"
