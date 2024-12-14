@@ -4,9 +4,9 @@ class UniversalTestRunner < Formula
   desc "The Universal Test Runner is a zero-configuration, language-aware way to run unit tests in any project."
   homepage "https://github.com/xavdid/universal-test-runner"
   # update this url on new versions
-  url "https://files.pythonhosted.org/packages/1b/1b/d10a6b957d5d0a01d281226ca7562d86f5f1978d0eb9115819330251174c/universal_test_runner-0.6.2.tar.gz"
+  url "https://files.pythonhosted.org/packages/12/56/a981fc05a134e40516c419eae02746e0f058fd911ac1b5b1a1496421c5e9/universal_test_runner-0.7.0.tar.gz"
   # update this SHA on new versions
-  sha256 "a379922df425eb11bc12893400dfc1a4683a44b1baf83178bd95742d23e95ad7"
+  sha256 "1e8eb932c15f08c09c8ce8659d337ad46cbdccd04279590085f0cdcd8de80cb8"
 
   depends_on "python3"
 
