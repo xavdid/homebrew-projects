@@ -21,7 +21,7 @@ _default:
 # generate a new python package formula
 generate package:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     cd /tmp
     mkdir create-formula
@@ -43,4 +43,4 @@ generate package:
 
 @commit package: (_exists package)
     git add ./Formula/{{ package }}.rb
-    git commit -m "{{ package }} -> $(curl --fail -s "https://pypi.org/pypi/universal-test-runner/json" | jq -r '.info.version')"
+    git commit -m "{{ package }} -> $(curl --fail -s "https://pypi.org/pypi/{{ package }}/json" | jq -r '.info.version')"
