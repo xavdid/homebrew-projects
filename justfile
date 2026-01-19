@@ -13,11 +13,6 @@ _default:
 
     echo "Paste those values into ./Formula/{{ package }}.rb"
 
-# install, then uninstall, a formula. will fail if it's malformed. Useful for running after `bump`
-@verify package: (_exists package)
-    brew install --quiet --formula ./Formula/{{ package }}.rb
-    brew uninstall --quiet --formula ./Formula/{{ package }}.rb
-
 # generate a new python package formula
 @generate package:
     uvx --with {{ package }} --from homebrew-pypi-poet poet -f {{ package }} > "Formula/{{ package }}.rb"
