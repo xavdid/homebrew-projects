@@ -19,27 +19,10 @@ _default:
     brew uninstall --quiet --formula ./Formula/{{ package }}.rb
 
 # generate a new python package formula
-generate package:
-    #!/usr/bin/env bash
-    set -euo pipefail
+@generate package:
+    uvx --with {{ package }} --from homebrew-pypi-poet poet -f {{ package }} > "Formula/{{ package }}.rb"
 
-    cd /tmp
-    mkdir create-formula
-    cd create-formula
-
-    python -m venv .venv
-    source ./.venv/bin/activate
-
-    pip install {{package}} homebrew-pypi-poet
-    poet -f {{package}} > "{{package}}.rb"
-    cp "{{package}}.rb" ~/projects/homebrew-projects/Formula
-
-    deactivate
-
-    cd ..
-    rm -rf create-formula
-
-    echo "Ok now tweak the new formula!"
+    echo "Ok, now tweak the new formula!"
 
 @commit package: (_exists package)
     git add ./Formula/{{ package }}.rb
