@@ -15,7 +15,7 @@ _default:
 
 # generate a new python package formula
 @generate package:
-    uvx --with {{ package }} --from homebrew-pypi-poet poet -f {{ package }} > "Formula/{{ package }}.rb"
+    uvx --with {{ package }} --with 'setuptools<82.0.0' --from homebrew-pypi-poet poet -f {{ package }} > "Formula/{{ package }}.rb"
 
     echo "Ok, now tweak the new formula!"
 
